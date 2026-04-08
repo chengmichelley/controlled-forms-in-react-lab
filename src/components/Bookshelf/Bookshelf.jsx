@@ -9,6 +9,15 @@ const Bookshelf = () => {
 
   const [newBook, setNewBook] = useState({ title: "", author: "" });
 
+  const handleInputChange = (e) => {
+    setNewBook({ ...newBook, [e.target.name]: e.target.value });
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setBooks([...books, newBook]);
+    setNewBook({ title: "", author: "" });
+  }
   return (
   <>
     <div className="bookshelfDiv">
