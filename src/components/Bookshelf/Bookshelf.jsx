@@ -3,11 +3,11 @@ import { useState } from "react";
 const Bookshelf = () => {
 
   const [books, setBooks] = useState([
-    { title: "Fourth Wing", author: "Rebecca Yarros" },
-    { title: "The Lion, the Witch and the Wardrobe", author: "C.S. Lewis" },
+    { id: crypto.randomUUID(), title: "Fourth Wing", author: "Rebecca Yarros" },
+    { id: crypto.randomUUID(), title: "The Lion, the Witch and the Wardrobe", author: "C.S. Lewis" },
   ]);
 
-  const [newBook, setNewBook] = useState({ title: "", author: "" });
+  const [newBook, setNewBook] = useState({ id: crypto.randomUUID(), title: "", author: "" });
 
   const handleInputChange = (e) => {
     setNewBook({ ...newBook, [e.target.name]: e.target.value });
@@ -16,7 +16,7 @@ const Bookshelf = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setBooks([...books, newBook]);
-    setNewBook({ title: "", author: "" });
+    setNewBook({ id: crypto.randomUUID(), title: "", author: "" });
   }
   return (
   <>
@@ -47,7 +47,7 @@ const Bookshelf = () => {
       </div>
       <div className="bookCardsDiv">
         {books.map((book, index) => (
-          <div key = {index} className="bookCard">
+          <div key = {book.id} className="bookCard">
             <h4>{book.title}</h4>
             <p>{book.author}</p>
           </div>
